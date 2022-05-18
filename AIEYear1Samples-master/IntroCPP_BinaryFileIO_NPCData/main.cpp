@@ -18,15 +18,14 @@
 *   Copyright (c) 2014 Ramon Santamaria (@raysan5)
 *
 ********************************************************************************************/
-#include <iostream>
 
 #include "raylib.h"
+#include "DataFile.h"
 
-#define RAYGUI_IMPLEMENTATION
-#define RAYGUI_SUPPORT_ICONS
-#include "raygui.h"
 
-#include "gameObject.h"
+#include <iostream>
+#include <string>
+
 
 int main(int argc, char* argv[])
 {
@@ -34,14 +33,20 @@ int main(int argc, char* argv[])
     //--------------------------------------------------------------------------------------
     int screenWidth = 800;
     int screenHeight = 450;
-    InitWindow(screenWidth, screenHeight, "Space Invaders");
+
+    InitWindow(screenWidth, screenHeight, "raylib [core] example - basic window");
+
+    DataFile data;
+    int currentRecordIdx = 0;
+
+    data.Load("npc_data.dat");
+
+    DataFile::Record* currentRecord = data.GetRecord(currentRecordIdx);
+    Texture2D recordTexture = LoadTextureFromImage(currentRecord->image);
+
 
     SetTargetFPS(60);
     //--------------------------------------------------------------------------------------
-
-    GameObject obj;
-    obj;
-
 
     // Main game loop
     while (!WindowShouldClose())    // Detect window close button or ESC key
@@ -51,6 +56,28 @@ int main(int argc, char* argv[])
         // TODO: Update your variables here
         //----------------------------------------------------------------------------------
 
+        if (IsKeyPressed(KEY_LEFT))
+        {
+            currentRecordIdx--;
+            if (currentRecordIdx < 0)
+            {
+                currentRecordIdx = 0;
+            }
+            currentRecord = data.GetRecord(currentRecordIdx);
+            recordTexture = LoadTextureFromImage(currentRecord->image);
+        }
+
+        if (IsKeyPressed(KEY_RIGHT))
+        {
+            currentRecordIdx++;
+            if (currentRecordIdx >= data.GetRecordCount())
+            {
+                currentRecordIdx = data.GetRecordCount();
+            }
+            currentRecord = data.GetRecord(currentRecordIdx);
+            recordTexture = LoadTextureFromImage(currentRecord->image);
+        }
+
 
         // Draw
         //----------------------------------------------------------------------------------
@@ -58,7 +85,14 @@ int main(int argc, char* argv[])
 
         ClearBackground(RAYWHITE);
 
-        DrawText("Congrats! You created your first window!", 190, 200, 20, LIGHTGRAY);
+        DrawTexture(recordTexture, 300, 50, WHITE);
+
+        //writes name and age of the selected character to screen
+        DrawText("NAME", 10, 50, 20, LIGHTGRAY);
+        DrawText(currentRecord->name.c_str(), 10, 80, 20, LIGHTGRAY);
+
+        DrawText("AGE", 10, 120, 20, LIGHTGRAY);
+        DrawText(to_string(currentRecord->age).c_str(), 10, 150, 20, LIGHTGRAY);
 
         EndDrawing();
         //----------------------------------------------------------------------------------

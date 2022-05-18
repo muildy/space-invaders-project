@@ -7,10 +7,7 @@ GameObject::GameObject()
 	posY = 0;
 }
 
-void GameObject::translateObj(int xMov, int yMov) {
-	posX + xMov;
-	posY + yMov;
-}
+
 
 GameObject::~GameObject()
 {

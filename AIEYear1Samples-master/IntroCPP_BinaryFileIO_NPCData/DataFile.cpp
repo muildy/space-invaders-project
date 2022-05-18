@@ -31,7 +31,7 @@ void DataFile::AddRecord(string imageFilename, string name, int age)
 
 DataFile::Record* DataFile::GetRecord(int index)
 {
-	return records[index+1];
+	return records[index];
 }
 
 void DataFile::Save(string filename)

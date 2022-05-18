@@ -139,5 +139,6 @@ bool ScrabbleBoard::CanPlaceText(int xIndex, int yIndex, const char* text, EDire
 	// 
 	// ========================================================================
 
+	std::cout<< text.c
 	return true;
 }

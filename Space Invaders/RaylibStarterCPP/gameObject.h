@@ -17,7 +17,4 @@ private:
 	int health;
 	int posY;
 	int posX;
-
-public:
-	void translateObj(int xMov, int yMov);
 };

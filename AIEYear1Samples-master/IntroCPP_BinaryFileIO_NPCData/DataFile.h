@@ -18,8 +18,10 @@ public:
 private:
 	int recordCount;
 	std::vector<Record*> records;	// delete this vector. Load only the required record 
-
-
+	
+	ifstream* inFile;
+	int maxFileIndexRead;
+	int filePointer;
 
 public:
 	DataFile();
@@ -30,8 +32,11 @@ public:
 
 	int GetRecordCount() { return recordCount; };
 
+	void Open(string filename);
+
 	void Save(string filename);
 	void Load(string filename);
+
 
 private:
 	void Clear();

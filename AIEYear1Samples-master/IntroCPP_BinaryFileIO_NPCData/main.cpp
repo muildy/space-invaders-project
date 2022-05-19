@@ -22,11 +22,6 @@
 #include "raylib.h"
 #include "DataFile.h"
 
-
-#include <iostream>
-#include <string>
-
-
 int main(int argc, char* argv[])
 {
     // Initialization
@@ -39,7 +34,8 @@ int main(int argc, char* argv[])
     DataFile data;
     int currentRecordIdx = 0;
 
-    data.Load("npc_data.dat");
+    data.Open("npc_data.dat");
+    //data.Load("npc_data.dat");
 
     DataFile::Record* currentRecord = data.GetRecord(currentRecordIdx);
     Texture2D recordTexture = LoadTextureFromImage(currentRecord->image);
@@ -58,21 +54,23 @@ int main(int argc, char* argv[])
 
         if (IsKeyPressed(KEY_LEFT))
         {
-            currentRecordIdx--;
-            if (currentRecordIdx < 0)
+            currentRecordIdx--; // decrements the record index as you move up the list
+            if (currentRecordIdx < 0)//ensures that the record cannot go beyond bounds
             {
                 currentRecordIdx = 0;
             }
+            //
             currentRecord = data.GetRecord(currentRecordIdx);
             recordTexture = LoadTextureFromImage(currentRecord->image);
         }
 
+        //same as above but increments and maxes out one less than the total due to how arrays work.
         if (IsKeyPressed(KEY_RIGHT))
         {
             currentRecordIdx++;
             if (currentRecordIdx >= data.GetRecordCount())
             {
-                currentRecordIdx = data.GetRecordCount();
+                currentRecordIdx = data.GetRecordCount()-1;
             }
             currentRecord = data.GetRecord(currentRecordIdx);
             recordTexture = LoadTextureFromImage(currentRecord->image);
@@ -87,7 +85,6 @@ int main(int argc, char* argv[])
 
         DrawTexture(recordTexture, 300, 50, WHITE);
 
-        //writes name and age of the selected character to screen
         DrawText("NAME", 10, 50, 20, LIGHTGRAY);
         DrawText(currentRecord->name.c_str(), 10, 80, 20, LIGHTGRAY);
 

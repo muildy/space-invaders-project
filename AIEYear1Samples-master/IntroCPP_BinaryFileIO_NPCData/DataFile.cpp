@@ -1,9 +1,5 @@
 #include "DataFile.h"
 #include <fstream>
-
-#include <iostream>
-#include <string>
-
 using namespace std;
 
 DataFile::DataFile()
@@ -31,7 +27,59 @@ void DataFile::AddRecord(string imageFilename, string name, int age)
 
 DataFile::Record* DataFile::GetRecord(int index)
 {
+	if (maxFileIndexRead < index  ) {
+		inFile->seekg(filePointer, inFile->beg);//gets section by section thing?
+		maxFileIndexRead++;
+		
+		int nameSize = 0;
+		int ageSize = 0;
+		int width = 0, height = 0, format = 0, imageSize = 0;
+
+		inFile->read((char*)&width, sizeof(int));
+		inFile->read((char*)&height, sizeof(int));
+
+		imageSize = sizeof(Color) * width * height;
+
+		inFile->read((char*)&nameSize, sizeof(int));
+		inFile->read((char*)&ageSize, sizeof(int));
+
+		char* imgdata = new char[imageSize];
+		inFile->read(imgdata, imageSize);
+
+		Image img = LoadImageEx((Color*)imgdata, width, height);
+		char* name = new char[nameSize+1];
+		name[nameSize] = 0;
+
+		int age = 0;
+
+		inFile->read((char*)name, nameSize);
+		inFile->read((char*)&age, ageSize);
+
+		Record* r = new Record();
+		r->image = img;
+		r->name = string(name);
+		r->age = age;
+		records.push_back(r);
+
+		filePointer = inFile->tellg();
+
+		delete[] imgdata;
+		delete[] name;
+	}
+
 	return records[index];
+}
+
+void DataFile::Open(string filename) {
+
+	inFile = new ifstream(filename, ios::binary);//reads entire file, then saves it to the infile
+
+	recordCount = 0;
+	inFile->read((char*)&recordCount, sizeof(int));//reads the first one?
+
+	maxFileIndexRead = -1;
+
+	filePointer = inFile->tellg(); //Returns the position of the current character in the input stream.
 }
 
 void DataFile::Save(string filename)
@@ -82,7 +130,6 @@ void DataFile::Load(string filename)
 		infile.read((char*)&height, sizeof(int));
 
 		imageSize = sizeof(Color) * width * height;
-
 
 		infile.read((char*)&nameSize, sizeof(int));
 		infile.read((char*)&ageSize, sizeof(int));

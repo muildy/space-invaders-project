@@ -40,7 +40,7 @@ int main(int argc, char* argv[])
     //--------------------------------------------------------------------------------------
 
 
-
+    int x = 0;
 
     // Main game loop
     while (!WindowShouldClose())    // Detect window close button or ESC key
@@ -57,8 +57,13 @@ int main(int argc, char* argv[])
 
         ClearBackground(RAYWHITE);
 
-
-        DrawText("Congrats! You created your first window!", 190, 200, 20, LIGHTGRAY);
+        if (IsKeyDown(KEY_A)) {
+            x--;
+        }
+        if (IsKeyDown(KEY_D)) {
+            x++;
+        }
+        DrawText("Congrats! You created your first window!", 190+x, 200, 20, LIGHTGRAY);
 
         EndDrawing();
         //----------------------------------------------------------------------------------

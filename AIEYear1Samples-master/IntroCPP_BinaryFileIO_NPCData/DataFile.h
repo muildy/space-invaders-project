@@ -9,7 +9,7 @@ using namespace std;
 class DataFile
 {
 public:
-	//A container that holds all the information necessary 
+	//A container that holds all the information necessary A
 	struct Record {
 		Image image;
 		string name;

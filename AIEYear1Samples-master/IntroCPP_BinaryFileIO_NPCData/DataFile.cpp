@@ -11,7 +11,7 @@ DataFile::~DataFile()
 {
 	Clear();
 }
-
+//creates and adds a record to the records vector
 void DataFile::AddRecord(string imageFilename, string name, int age)
 {
 	Image i = LoadImage(imageFilename.c_str());
@@ -27,7 +27,7 @@ void DataFile::AddRecord(string imageFilename, string name, int age)
 
 DataFile::Record* DataFile::GetRecord(int index)
 {
-	if (maxFileIndexRead < index  ) {
+	if (maxFileIndexRead < index ) {
 		inFile->seekg(filePointer, inFile->beg);//gets section by section thing?
 		maxFileIndexRead++;
 		
@@ -55,13 +55,14 @@ DataFile::Record* DataFile::GetRecord(int index)
 		inFile->read((char*)name, nameSize);
 		inFile->read((char*)&age, ageSize);
 
+		//creates 
 		Record* r = new Record();
 		r->image = img;
 		r->name = string(name);
 		r->age = age;
 		records.push_back(r);
 
-		filePointer = inFile->tellg();
+		filePointer = inFile->tellg();//sets filePointer to the end of the read data.
 
 		delete[] imgdata;
 		delete[] name;

@@ -40,6 +40,7 @@ int main(int argc, char* argv[])
     SetTargetFPS(60);
     //--------------------------------------------------------------------------------------
 
+    
 
     // Main game loop
     while (!WindowShouldClose())    // Detect window close button or ESC key
@@ -58,8 +59,6 @@ int main(int argc, char* argv[])
             std::cout << "SPACE" << std::endl;
         };
 
-        
-            
 
         // Draw
         //----------------------------------------------------------------------------------

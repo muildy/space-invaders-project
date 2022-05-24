@@ -18,6 +18,7 @@
 |   Copyright (c) 2014 Ramon Santamaria (@raysan5)                                          |
 \                                                                                           |
   ******************************************************************************************/
+//https://www.youtube.com/watch?v=MkpxwsybNPo&t=75s&ab_channel=Hopson ~usefull video
 #include <iostream>
 
 #include "raylib.h"
@@ -28,6 +29,7 @@
 #include "raygui.h"
 
 #include "Game.h"
+#include "Player.h"
 
 int main(int argc, char* argv[])
 {
@@ -38,6 +40,10 @@ int main(int argc, char* argv[])
     InitWindow(screenWidth, screenHeight, "Space Invaders");
 
     SetTargetFPS(60);
+
+    Player* player = new Player(screenWidth/2 , screenHeight-(screenHeight/8), 10);
+
+    Player* player = new Player(screenWidth/2 , (screenHeight/8), 10);
     //--------------------------------------------------------------------------------------
 
     
@@ -54,15 +60,7 @@ int main(int argc, char* argv[])
         //----------------------------------------------------------------------------------
 
 
-        if (IsKeyDown(KEY_A)|| IsKeyDown(KEY_LEFT)) {
-            std::cout << "A" << std::endl;
-        };
-        if (IsKeyDown(KEY_D) || IsKeyDown(KEY_RIGHT)) {
-            std::cout << "D" << std::endl;
-        };
-        if (IsKeyPressed(KEY_SPACE)) {
-            std::cout << "SPACE" << std::endl;
-        };
+        player->update();
 
 
         // Draw
@@ -71,6 +69,7 @@ int main(int argc, char* argv[])
 
         ClearBackground(RAYWHITE); 
 
+        player->draw();
         DrawText("Congrats! You created your first window!", 190, 200, 20, LIGHTGRAY);
 
         EndDrawing();

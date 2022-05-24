@@ -13,3 +13,4 @@ GameObject::~GameObject()
 {
 	//when i do fun pointer stuff, here it goes
 }
+

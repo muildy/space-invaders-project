@@ -1,4 +1,10 @@
 #pragma once
+
+#include "raylib.h"
+#include "raymath.h"
+
+#include <iostream> 
+
 /// <summary>
 ///			^ ~ y
 ///			|
@@ -12,9 +18,15 @@ public:
 	GameObject();
 	~GameObject();
 
+	virtual void update() = 0;
+	virtual void draw() = 0;
 
-private:
+	int AAAAAa();
+
+protected:
 	int health;
 	int posY;
 	int posX;
+
+
 };

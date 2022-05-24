@@ -27,7 +27,7 @@
 #define RAYGUI_SUPPORT_ICONS
 #include "raygui.h"
 
-#include "gameObject.h"
+#include "Game.h"
 
 int main(int argc, char* argv[])
 {
@@ -45,10 +45,15 @@ int main(int argc, char* argv[])
     // Main game loop
     while (!WindowShouldClose())    // Detect window close button or ESC key
     {
+        
+        
+        
         // Update
         //----------------------------------------------------------------------------------
         // TODO: Update your variables here
         //----------------------------------------------------------------------------------
+
+
         if (IsKeyDown(KEY_A)|| IsKeyDown(KEY_LEFT)) {
             std::cout << "A" << std::endl;
         };

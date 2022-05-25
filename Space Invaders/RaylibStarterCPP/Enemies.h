@@ -8,9 +8,9 @@ public:
 
 	Enemies(int x, int y, int size);
 
-	void update() override;
+	void update(Vector2 updatePos);
 	void draw() override;
 
 private:
-	int m_size;
+
 };

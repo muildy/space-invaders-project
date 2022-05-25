@@ -8,9 +8,9 @@ public:
 
 	Player(int x, int y, int size);
 	
-	void update() override;
+	void update();//player update is fundamentaly simpler than the other updates due to the player directly updating it
 	void draw() override;
 
 private:
-	int m_size;
+	int m_speed;
 };

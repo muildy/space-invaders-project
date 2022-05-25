@@ -18,15 +18,15 @@ public:
 	GameObject();
 	~GameObject();
 
-	virtual void update() = 0;
+	//virtual void update() = 0;
 	virtual void draw() = 0;
 
-	int AAAAAa();
 
 protected:
-	int health;
-	int posY;
+	int lives;	//player should start with 3 lives
 	int posX;
+	int posY;
+	float m_size;	//size of the circles or squares, is a float for warnings reasons
 
-
+	bool alive;	//general alive vibe check
 };

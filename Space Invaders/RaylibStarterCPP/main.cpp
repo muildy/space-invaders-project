@@ -24,12 +24,11 @@
 #include "raylib.h"
 #include "raymath.h"
 
-#define RAYGUI_IMPLEMENTATION
-#define RAYGUI_SUPPORT_ICONS
-#include "raygui.h"
-
+#include "TitleScreen.h"
 #include "Game.h"
 #include "Player.h"
+#include "Enemies.h"
+#include "Helper.h"     //helper class, contains the screen dimentions for use elsewhere
 
 int main(int argc, char* argv[])
 {
@@ -37,44 +36,19 @@ int main(int argc, char* argv[])
     //--------------------------------------------------------------------------------------
     int screenWidth = 800;
     int screenHeight = 450;
-    InitWindow(screenWidth, screenHeight, "Space Invaders");
-
-    SetTargetFPS(60);
-
-    Player* player = new Player(screenWidth/2 , screenHeight-(screenHeight/8), 10);
-
-    Player* player = new Player(screenWidth/2 , (screenHeight/8), 10);
-    //--------------------------------------------------------------------------------------
-
-    
-
-    // Main game loop
-    while (!WindowShouldClose())    // Detect window close button or ESC key
-    {
-        
-        
-        
-        // Update
-        //----------------------------------------------------------------------------------
-        // TODO: Update your variables here
-        //----------------------------------------------------------------------------------
 
 
-        player->update();
+
+    InitWindow(screenWidth, screenHeight = 450, "Space Invaders");
+    SetTargetFPS(30);
 
 
-        // Draw
-        //----------------------------------------------------------------------------------
-        BeginDrawing();
 
-        ClearBackground(RAYWHITE); 
 
-        player->draw();
-        DrawText("Congrats! You created your first window!", 190, 200, 20, LIGHTGRAY);
+    //Game runGame = Game(screenWidth, screenHeight);
+    TitleScreen title = TitleScreen(screenWidth, screenHeight);
 
-        EndDrawing();
-        //---------------------------------------------------------------------------------- 
-    }
+
 
     // De-Initialization 
     //--------------------------------------------------------------------------------------   

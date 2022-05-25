@@ -2,9 +2,10 @@
 
 GameObject::GameObject()
 {
-	health = 0;
+	lives = 0;
 	posX = 0;
 	posY = 0;
+	alive = true;
 }
 
 

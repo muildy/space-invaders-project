@@ -81,7 +81,7 @@ int main(int argc, char* argv[])
         //----------------------------------------------------------------------------------
         BeginDrawing();
 
-        ClearBackground(RAYWHITE);
+        ClearBackground(RAYWHITE);  //wipes the screen so that 
 
         DrawTexture(recordTexture, 300, 50, WHITE);
 

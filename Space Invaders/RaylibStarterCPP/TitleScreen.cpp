@@ -28,10 +28,12 @@ TitleScreen::TitleScreen(int screenWidth, int screenHeight)
     //    stars[i]->colour.g = (rand() + 100) % 200;
     //    stars[i]->colour.b = (rand() + 100) % 255;
     //}
-    int counter = 0;
+
+
     while (!WindowShouldClose())    // Detect window close button or ESC key
     {
-        counter++;
+
+
 
         // Update
         //----------------------------------------------------------------------------------
@@ -41,10 +43,10 @@ TitleScreen::TitleScreen(int screenWidth, int screenHeight)
             stars[i] = new Star;
             stars[i]->x = i;//rand() % screenWidth;
             stars[i]->y = sin(i) * 100;//rand() % screenHeight;
-            stars[i]->colour.a = (rand() + 100) % 255;
-            stars[i]->colour.r = (rand() + 100) % 255;
-            stars[i]->colour.g = (rand() + 100) % 200;
-            stars[i]->colour.b = (rand() + 100) % 255;
+            stars[i]->colour.a = 255;//(rand() + 100) % 255;
+            stars[i]->colour.r = //(rand() + 100) % 255;
+            stars[i]->colour.g = //(rand() + 100) % 200;
+            stars[i]->colour.b = //(rand() + 100) % 255;
         }
         // Draw
         //----------------------------------------------------------------------------------

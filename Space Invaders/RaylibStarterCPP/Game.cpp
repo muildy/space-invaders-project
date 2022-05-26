@@ -1,4 +1,7 @@
+//https://www.raylib.com/examples.html -image processing was a big help
+
 #include "Game.h"
+
 
 Game::Game() {
     std::cout << "constuctor called" << std::endl;

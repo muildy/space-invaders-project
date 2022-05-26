@@ -25,6 +25,7 @@
 #include "raymath.h"
 
 #include "TitleScreen.h"
+
 #include "Game.h"
 #include "Player.h"
 #include "Enemies.h"
@@ -45,10 +46,9 @@ int main(int argc, char* argv[])
 
 
 
-    //Game runGame = Game(screenWidth, screenHeight);
-    TitleScreen title = TitleScreen(screenWidth, screenHeight);
-
-
+    //the title screen runs, and when it ends due to buttonpress, it initilises the main game class
+    //TitleScreen title = TitleScreen(screenWidth, screenHeight);                                   //remember to uncomment
+    Game runGame = Game(screenWidth, screenHeight);//this is here due to bug testing reasons
 
     // De-Initialization 
     //--------------------------------------------------------------------------------------   

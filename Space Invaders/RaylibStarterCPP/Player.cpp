@@ -29,15 +29,15 @@ void Player::update()
     if (IsKeyDown(KEY_A) || IsKeyDown(KEY_LEFT)) {
         posX -= m_speed;
         std::cout << "A" << tempX << std::endl;
-    };
+    }
     if (IsKeyDown(KEY_D) || IsKeyDown(KEY_RIGHT)) {
         posX += m_speed;
         std::cout << "D" << tempX << std::endl;
 
-    };
+    }
     if (IsKeyPressed(KEY_SPACE)) {
         std::cout << "SPACE" << std::endl;
-    };
+    }
 }
 
 void Player::draw()

@@ -6,7 +6,7 @@ public:
 	Enemies();
 	~Enemies();
 
-	Enemies(int x, int y, int size);
+	Enemies(int x, int y, float size);
 
 	void update(Vector2 updatePos);
 	void draw() override;

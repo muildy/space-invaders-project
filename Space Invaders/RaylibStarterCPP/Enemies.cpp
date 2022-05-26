@@ -9,14 +9,14 @@ Enemies::Enemies()
 
 	posX = 0;
 	posY = 0;
-	m_size = INT_MAX;
+	m_size = 9999.999f;
 }
 
 Enemies::~Enemies()
 {
 }
 
-Enemies::Enemies(int x, int y, int size)
+Enemies::Enemies(int x, int y, float size)
 {
 	posX = x;
 	posY = y;
@@ -25,8 +25,8 @@ Enemies::Enemies(int x, int y, int size)
 
 void Enemies::update(Vector2 updatePos)
 {
-	posX = posX;// % screenWidth;
-	posY = posX;// / screenWidth;
+	posX = updatePos.x;
+	posY = updatePos.y;
 
 }
 

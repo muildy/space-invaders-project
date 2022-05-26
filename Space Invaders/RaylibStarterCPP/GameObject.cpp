@@ -5,6 +5,7 @@ GameObject::GameObject()
 	lives = 0;
 	posX = 0;
 	posY = 0;
+	m_size = 0;
 	alive = true;
 }
 

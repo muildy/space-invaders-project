@@ -76,13 +76,13 @@ TitleScreen::TitleScreen(int screenWidth, int screenHeight)
             for (int i = 0; i < starsAmount; i++) {
                 DrawCircle(stars[i]->x, stars[i]->y, 3, stars[i]->colour);
                 DrawText("SPACE INVADERS", 40 + (rand() % 10), 165 + (rand() % 10), 70, stars[i]->colour);
-                DrawText("by Adam 2022", (screenWidth - 84) + (rand() % 2), (screenHeight - 15) + (rand() % 3), 7, stars[i]->colour);
+                DrawText("made by Adam", (screenWidth - 84) + (rand() % 2), (screenHeight - 15) + (rand() % 3), 7, stars[i]->colour);
             }
             //menu buttons 
             DrawRectangleRec(startbutton, (mCheckStart) ? LIGHTGRAY : DARKGRAY);
             DrawRectangleRec(exitbutton, (mCheckExit) ? LIGHTGRAY : DARKGRAY);
-            DrawText("START", startbutton.x + 5 + (rand() % 5), startbutton.y + 5 + (rand() % 2), 20, WHITE);
-            DrawText("EXIT", exitbutton.x + 5 + (rand() % 5), exitbutton.y + 5 + (rand() % 2), 20, WHITE);
+            DrawText("START", startbutton.x + 5 + (rand() % 3), startbutton.y + 5 + (rand() % 2), 20, WHITE);
+            DrawText("EXIT", exitbutton.x + 5 + (rand() % 3), exitbutton.y + 5 + (rand() % 2), 20, WHITE);
 
 
             EndDrawing();
@@ -94,7 +94,7 @@ TitleScreen::TitleScreen(int screenWidth, int screenHeight)
             delete(stars[i]);
         }
     }//this makes everything except for game fall out of scope, clearing it. it doesnt really do much for performance, but i like the idea of all the stuff being cleaned
-    //after the loop ends due to the breaks, it is assumed that game will then run due to the logic within
+    //after the loop ends due to the breaks, it is assumed that game running is the desired outcome
     Game game = Game(screenWidth, screenHeight);
 }
 

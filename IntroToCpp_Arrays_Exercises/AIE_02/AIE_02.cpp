@@ -31,6 +31,7 @@ int MinValue(const int* arr, int count)
 {
 	int min = arr[0];
 	// TODO: loop through the array, return the smallest value
+	//loops through array comparing values, if the compared value is smaller than the current min, then compared is assigned to min
 	for (int i = 0; i < count; ++i) {
 		if (min > arr[i]) {
 			min = arr[i];
@@ -43,6 +44,7 @@ int MaxValue(const int* arr, int count)
 {
 	int max = arr[0];
 	// TODO: loop through the array, return the largest value
+	//same as above but the comparer is flipped
 	for (int i = 0; i < count; ++i) {
 		if (max < arr[i]) {
 			max = arr[i];
@@ -55,6 +57,7 @@ int CountOccurencesOfValue(const int* arr, int count, int search)
 {
 	int result = 0;
 	// TODO: loop through the array, return the amount of times search appears
+	//each time the searched for value appears, result is incremented 
 	for (int i = 0; i < count; i++) {
 		if (search == arr[i]) {
 			result++;

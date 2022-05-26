@@ -51,21 +51,21 @@ const int* BinarySearch(const int* arr, int count, int searchVal){
 
 	while (start <= end) {
 		int searchInt = ((start + end) / 2);	//search int is the position the checked number is in the array
-		int checkInt = (int)*(arr+searchInt);	//is the value that is being checked and compared to the searchVal
+		int checkInt = (int)*(arr+searchInt);	//check int is the value that is being checked and compared to the searchVal
 
-		if (checkInt == searchVal) {			//compares the value being looked at and the desired variable
-			return (arr + searchInt);
+		if (checkInt == searchVal) {			//compares the value being looked at with the number being searched for
+			return (arr + searchInt);			//if the numbers match, then the desired pointer is returned
 		}
-		else if (checkInt < searchVal) {	//
-			start = searchInt + 1;
+		else if (checkInt < searchVal) {		//if the checked int is smaller than the one we want
+			start = searchInt + 1;				//we increase the start since we know it isnt there
 		}
-		else if (checkInt > searchVal) {
+		else if (checkInt > searchVal) {		//opposite happens when the checked int is larger than the one we want
 			end = searchInt - 1;
 		}
 	}
 	
 
-	return nullptr;
+	return nullptr;//if the check yeilds no results, it returns a nullpointer
 }
 
 

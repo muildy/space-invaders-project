@@ -20,15 +20,21 @@ void DataFile::AddRecord(string imageFilename, string name, int age)
 	r->image = i;
 	r->name = name;
 	r->age = age;
-
+	
 	records.push_back(r);
 	recordCount++;
 }
 
+/// <summary>
+/// reads the file based on the index and places it onto the end of the vector records[], then passes the item inside of the vector 
+/// </summary>
+/// <param name="index"></param>
+/// <returns></returns>
 DataFile::Record* DataFile::GetRecord(int index)
 {
+	//ensures that only a file that hasnt been read yet gets read and then placed
 	if (maxFileIndexRead < index ) {
-		inFile->seekg(filePointer, inFile->beg);//gets section by section thing?
+		inFile->seekg(filePointer, inFile->beg);//sets the reading position within the file to the filepointer
 		maxFileIndexRead++;
 		
 		int nameSize = 0;
@@ -55,34 +61,43 @@ DataFile::Record* DataFile::GetRecord(int index)
 		inFile->read((char*)name, nameSize);
 		inFile->read((char*)&age, ageSize);
 
-		//creates 
+		//creates a new record and places it onto the end of the vector
 		Record* r = new Record();
 		r->image = img;
 		r->name = string(name);
 		r->age = age;
 		records.push_back(r);
 
-		filePointer = inFile->tellg();//sets filePointer to the end of the read data.
+		filePointer = inFile->tellg();//sets filePointer to the current position of the 
 
 		delete[] imgdata;
 		delete[] name;
+		return records[index];
 	}
-
+	//if the file already appears in the vector based on the index, then it just returns it
 	return records[index];
 }
 
+/// <summary>
+/// opens the given datafile, reads the first int and sets the file pointer to the current position in file
+/// </summary>
+/// <param name="filename"></param>
 void DataFile::Open(string filename) {
 
 	inFile = new ifstream(filename, ios::binary);//reads entire file, then saves it to the infile
 
 	recordCount = 0;
-	inFile->read((char*)&recordCount, sizeof(int));//reads the first one?
+	inFile->read((char*)&recordCount, sizeof(int));//reads up to the first int
 
 	maxFileIndexRead = -1;
 
 	filePointer = inFile->tellg(); //Returns the position of the current character in the input stream.
 }
 
+
+#ifdef DEBUG//i guess this makes it so that this doesnt go to compiler
+
+//unused
 void DataFile::Save(string filename)
 {
 	ofstream outfile(filename, ios::binary);
@@ -112,6 +127,7 @@ void DataFile::Save(string filename)
 	outfile.close();
 }
 
+//obselete
 void DataFile::Load(string filename)
 {
 	Clear();
@@ -158,6 +174,7 @@ void DataFile::Load(string filename)
 	infile.close();
 }
 
+#endif // DEBUG
 void DataFile::Clear()
 {
 	for (int i = 0; i < records.size(); i++)
@@ -167,3 +184,4 @@ void DataFile::Clear()
 	records.clear();
 	recordCount = 0;
 }
+

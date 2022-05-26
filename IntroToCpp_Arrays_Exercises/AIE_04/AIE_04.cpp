@@ -41,10 +41,10 @@ void SortArray(int* arr, int count)
     bool sorted = false; //set to false to ensure the while loop starts up
     while (!sorted)
     {
-        sorted = true;
+        sorted = true;//if the if statement doesnt trigger for the entire for loop, then it is sorted and the loop ends
         for (int i = 0; i < count - 1; ++i)
         {
-            if (arr[i] > arr[i + 1])
+            if (arr[i] > arr[i + 1])//basic bubble sort where if the first item is larger than the second item, they swap
             {
                 std::swap(arr[i], arr[i + 1]);
                 sorted = false;

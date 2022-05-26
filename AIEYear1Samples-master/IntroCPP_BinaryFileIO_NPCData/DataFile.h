@@ -9,32 +9,33 @@ using namespace std;
 class DataFile
 {
 public:
-	//A container that holds all the information necessary A
+	//Holds all the info needed for display on screen
 	struct Record {
 		Image image;
 		string name;
 		int age;
 	};
 
-private:
+private://everything that records needs to do its job
 	int recordCount;
 	std::vector<Record*> records;	// delete this vector. Load only the required record 
 	
 	ifstream* inFile;
 	int maxFileIndexRead;
-	int filePointer;
 
+	int filePointer;
+	
 public:
 	DataFile();
 	~DataFile();
 
 	void AddRecord(string imageFilename, string name, int age);
 	Record* GetRecord(int index);
+	void Open(string filename);
 
 	int GetRecordCount() { return recordCount; };
 
-	void Open(string filename);
-
+	//unused or obselete
 	void Save(string filename);
 	void Load(string filename);
 

@@ -34,9 +34,11 @@ int main(int argc, char* argv[])
     DataFile data;
     int currentRecordIdx = 0;
 
+    //opens the datafile and reads its length for use
     data.Open("npc_data.dat");
     //data.Load("npc_data.dat");
 
+    //initialises the current record with the first data set from the file
     DataFile::Record* currentRecord = data.GetRecord(currentRecordIdx);
     Texture2D recordTexture = LoadTextureFromImage(currentRecord->image);
 
@@ -52,14 +54,14 @@ int main(int argc, char* argv[])
         // TODO: Update your variables here
         //----------------------------------------------------------------------------------
 
-        if (IsKeyPressed(KEY_LEFT))
+       if (IsKeyPressed(KEY_LEFT))
         {
             currentRecordIdx--; // decrements the record index as you move up the list
             if (currentRecordIdx < 0)//ensures that the record cannot go beyond bounds
             {
                 currentRecordIdx = 0;
             }
-            //
+            //sets current record to the previous index, or the current one if there isnt one
             currentRecord = data.GetRecord(currentRecordIdx);
             recordTexture = LoadTextureFromImage(currentRecord->image);
         }
@@ -81,10 +83,12 @@ int main(int argc, char* argv[])
         //----------------------------------------------------------------------------------
         BeginDrawing();
 
-        ClearBackground(RAYWHITE);  //wipes the screen so that 
+        ClearBackground(RAYWHITE);  //clears background
 
+        //draws image to screen
         DrawTexture(recordTexture, 300, 50, WHITE);
 
+        //then writes name and age to screen
         DrawText("NAME", 10, 50, 20, LIGHTGRAY);
         DrawText(currentRecord->name.c_str(), 10, 80, 20, LIGHTGRAY);
 

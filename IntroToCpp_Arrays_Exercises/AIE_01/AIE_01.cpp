@@ -13,6 +13,7 @@ int main(int argc, char** argv)
 	*/
 	// Task1: Write your Code here
 	// ------------------------------------------------------------------------
+	//loops through all the numbers and returns them, incramenting from the min
 	for (int i = 0; i < NUM_NUMBERS; i++) {
 		std::cout << numbers[i] << ", ";
 	}
@@ -30,6 +31,7 @@ int main(int argc, char** argv)
 
 	// Task 2: Write your Code here
 	// ------------------------------------------------------------------------
+	//same as above except it decrements from the max
 	for (int i = NUM_NUMBERS-1; i >= 0; i--) {
 		std::cout << numbers[i] << ", ";
 	}

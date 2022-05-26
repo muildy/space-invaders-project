@@ -24,7 +24,7 @@ int main(int argc, char** argv)
 	//		b0, b1, b2, b3, b4,
 	//		c0, c1, c2, c3, c4,
 	// ------------------------------------------------------------------------
-	
+	//loops t
 	for (int row = 0; row < ROWS; row++) {
 		for (int col = 0; col < COLS; col++) {
 			std::cout << grid2D[row][col] << ", ";

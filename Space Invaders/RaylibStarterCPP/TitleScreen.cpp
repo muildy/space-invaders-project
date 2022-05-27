@@ -15,10 +15,11 @@ struct Star {
 };
 
 
-TitleScreen::TitleScreen(int screenWidth, int screenHeight)
+TitleScreen::TitleScreen()
 {
     {
-
+        int screenWidth = GetScreenWidth();
+        int screenHeight = GetScreenHeight();
         //button items
         bool mCheckStart = false;
         bool mCheckExit = false;
@@ -95,7 +96,7 @@ TitleScreen::TitleScreen(int screenWidth, int screenHeight)
         }
     }//this makes everything except for game fall out of scope, clearing it. it doesnt really do much for performance, but i like the idea of all the stuff being cleaned
     //after the loop ends due to the breaks, it is assumed that game running is the desired outcome
-    Game game = Game(screenWidth, screenHeight);
+    Game game = Game();//this is the way it is because i forgot about getters and setters existing
 }
 
 TitleScreen::~TitleScreen()

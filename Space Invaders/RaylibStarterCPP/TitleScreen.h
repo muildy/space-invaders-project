@@ -9,7 +9,7 @@
 
 class TitleScreen {
 public:
-	TitleScreen(int screenWidth, int screenHeight);
+	TitleScreen();
 	~TitleScreen();
 
 private:

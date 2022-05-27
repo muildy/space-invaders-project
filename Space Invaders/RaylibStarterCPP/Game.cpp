@@ -29,7 +29,7 @@ Game::Game(int screenWidth, int screenHeight)
         Vector2 ve = { screenWidth/2,screenHeight /2};
         
         player->update();
-        enemy->update(ve);
+        enemy->update();
 
 
         // Draw

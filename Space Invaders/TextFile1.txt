@@ -1,0 +1,196 @@
+stuff:
+.h files
+bullet
+    #pragma once
+    #include "gameObject.h"
+    class Bullet : public GameObject
+    {
+    public:
+        Bullet();
+        ~Bullet();
+        Bullet(int d, int x, int y);
+    
+        void update();
+        void draw() override;
+    
+    private:
+        int direction;
+    };
+
+
+Enemies
+    #pragma once
+    #include "GameObject.h"
+    
+    class Enemies : public GameObject {
+    public:
+    	struct Enemy {
+    
+    	};
+    public:
+    	Enemies();
+    	~Enemies();
+    
+    	Enemies(int x, int y, float size);
+    
+    	void update();
+    	void draw() override;
+    private:
+    };
+
+
+GameObject
+    #pragma once
+    
+    #include "raylib.h"
+    #include "raymath.h"
+    
+    #include <iostream> 
+    
+    /// <summary>
+    ///			^ ~ y
+    ///			|
+    ///		<-	+	-> ~ x
+    ///			|
+    ///			v
+    /// the game object is the parent class to all objects required in the game
+    /// </summary>
+    class GameObject {
+    public:
+    	GameObject();
+    	~GameObject();
+    
+    	//virtual void update() = 0;
+    	virtual void draw() = 0;
+    
+    
+    protected:
+    	int lives;	//player should start with 3 lives
+    	int posX;
+    	int posY;
+    	float m_size;	//size of the circles or squares, is a float for warnings reasons
+    
+    	bool alive;	//general alive vibe check
+    };
+
+Player
+    #pragma once
+    #include "GameObject.h"
+    
+    class Player : public GameObject {
+    public:	
+    	Player();
+    	~Player();
+    
+    	Player(int x, int y, int size);
+    	
+    	void update();//player update is fundamentaly simpler than the other updates due to the player directly updating it
+    	void draw() override;
+    
+    private:
+    	int m_speed;
+    };
+
+
+.cpp files
+bullet
+    #include "Bullet.h"
+
+
+    Bullet::Bullet(int dir, int x, int y) {
+    	posY = y;
+    	posX = x;
+    	direction = dir;
+    }
+    void Bullet::update() {
+    	
+    
+    }
+    void Bullet::draw() {
+    	DrawCircle(posX, posY, m_size, BEIGE);
+    }
+
+Enemies
+    #include "Enemies.h"
+    #include "Helper.h"
+
+    Enemies::Enemies()
+    {
+    	posX = 0;
+    	posY = 0;
+    	m_size = 9999.999f;
+    } 
+
+    Enemies::Enemies(int x, int y, float size)
+    {
+    	posX = x;
+    	posY = y;
+    	m_size = size;
+    }
+    void Enemies::draw()
+    {
+    	DrawCircle(posX, posY, m_size, BLUE);
+    }
+
+
+GameObject
+    #include "GameObject.h"
+    
+    GameObject::GameObject()
+    {
+    	lives = 0;
+    	posX = 0;
+    	posY = 0;
+    	m_size = 0;
+    	alive = true;
+    }
+    
+    
+    
+    GameObject::~GameObject()
+    {
+    	//when i do fun pointer stuff, here it goes
+    }
+
+
+
+Player
+    #include "Player.h"
+    Player::Player() {
+        posX = 0;
+        posY = 0;
+        m_size = INT_MAX;
+        m_speed = 2;
+    }
+    Player::Player(int x, int y, int size)
+    {
+        posX = x;
+        posY = y;
+        m_size = size;
+        m_speed = 10;
+    }
+        int tempX = 0;
+    void Player::update()
+    {
+        if (!alive) {//not sure if i should put this elsewhere
+            std::cout << "aaa im dead" << std::endl;
+        }
+    
+        if (IsKeyDown(KEY_A) || IsKeyDown(KEY_LEFT)) {
+            posX -= m_speed;
+            std::cout << "A" << tempX << std::endl;
+        }
+        if (IsKeyDown(KEY_D) || IsKeyDown(KEY_RIGHT)) {
+            posX += m_speed;
+            std::cout << "D" << tempX << std::endl;
+    
+        }
+        if (IsKeyPressed(KEY_SPACE)) {
+            std::cout << "SPACE" << std::endl;
+        }
+    }
+    void Player::draw()
+    {
+    	DrawCircle(posX, posY, m_size, BEIGE);
+    }
+    

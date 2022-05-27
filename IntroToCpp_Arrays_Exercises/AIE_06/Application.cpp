@@ -42,9 +42,9 @@ void Application::Load()
 	srand(time(NULL));
 
 
-	for (int i = 0; i < ROWS * COLS; i ++) {
+	for (int i = 0; i < ROWS * COLS; i ++) {//loops through all the tiles
 
-		m_tiles[i] = rand() % 5;
+		m_tiles[i] = rand() % 5;//and randomly assigns them a value from 0-5
 		//std::cout << m_tiles[i];
 	}
 	// -----------------------------------------------------
@@ -63,17 +63,17 @@ void Application::Update(float deltaTime)
 
 		// Task 3:
 		// TODO: Calculate row and col index based on the mouse positon
-		int colIndex = mousePos.x / m_tileWidth;
-		int rowIndex = (int)(mousePos.y / m_tileHeight) * ROWS;
+		int colIndex = mousePos.x / m_tileWidth;				  // uses mouse pos and divides the width of each tile to figure out where the mouse sits
+		int rowIndex = (int)(mousePos.y / m_tileHeight) * ROWS;	  // does the same as above except multiplies by total rows, since the array is one dimentional, we also need every row 'above' to be included too
 
 		// TODO: calculate the index of the tile clicked on based on the row/col index
-		int tileIndex =  colIndex + rowIndex;
+		int tileIndex =  colIndex + rowIndex;//add them together to have the tile index
 
 
-		if (tileIndex < ROWS * COLS) {
-			m_tiles[tileIndex] += 1;
-			if (m_tiles[tileIndex] >= 5)
-				m_tiles[tileIndex] = 0;
+		if (tileIndex < ROWS * COLS) {//then, if the tiles exist within the screen
+			m_tiles[tileIndex] += 1;//we add one to what colour they are
+			if (m_tiles[tileIndex] >= 5)//if the colour ends up being larger than the largest colour
+				m_tiles[tileIndex] = 0;//we make it loop
 		}
 	}
 }
@@ -97,13 +97,13 @@ void Application::Draw()
 	float xPos = 0;
 	float yPos = 0;
 
-
-
 	
-	for (int rows = 0; rows < ROWS; rows++){
-		for (int cols = 0; cols < COLS; cols ++){
-			Color color = GetTileColor(m_tiles[cols + (rows * ROWS)]); // pass in the tilevalue
-			DrawRectangle(cols* m_tileWidth, rows * m_tileHeight, m_tileWidth, m_tileHeight, color);
+	for (int rows = 0; rows < ROWS; rows++){		//
+		yPos = rows * m_tileHeight;					//goes through one by one finding the y
+		for (int cols = 0; cols < COLS; cols ++){	//within each row, is a number of cols which 
+			xPos = cols* m_tileWidth;				//then is multiplied by tilewidth to find x positions
+			Color color = GetTileColor(m_tiles[cols + (rows * ROWS)]); // pass in the tilevalue to get the colour
+			DrawRectangle(xPos , yPos, m_tileWidth, m_tileHeight, color);//then put all the info together into the rectangle and then draw
 		}
 	}
 	// --------------------------------------------------------------------

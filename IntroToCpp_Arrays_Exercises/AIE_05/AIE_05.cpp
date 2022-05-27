@@ -24,14 +24,14 @@ int main(int argc, char** argv)
 	//		b0, b1, b2, b3, b4,
 	//		c0, c1, c2, c3, c4,
 	// ------------------------------------------------------------------------
-	//loops t
-	for (int row = 0; row < ROWS; row++) {
-		for (int col = 0; col < COLS; col++) {
-			std::cout << grid2D[row][col] << ", ";
-		}
-		std::cout << std::endl;
-	}
-	std::cout << std::endl;
+													//
+	for (int row = 0; row < ROWS; row++) {			//loops through all the rows
+		for (int col = 0; col < COLS; col++) {		//within each row is 5 columns, which we then loop through
+			std::cout << grid2D[row][col] << ", ";	//then, we print out each column in each row
+		}											//
+		std::cout << std::endl;						//once a column is completed, we print an end line
+	}												//
+	std::cout << std::endl;							//
 
 
 	// ------------------------------------------------------------------------
@@ -47,8 +47,8 @@ int main(int argc, char** argv)
 	for (int index = 0; index < ROWS * COLS; index++)
 	{
 		// TODO: convert "index" to a "rowIndex" and "colIndex" value
-		int rowIndex = index / 5;
-		int colIndex = index % 5;
+		int rowIndex = index / 5;//there are 5 columns, and max index is = to row * col, so divide index by cols, and you get rows
+		int colIndex = index % 5;//divides and returns remainder, so it counts up to 4 before returning 0
 
 
 		// use the resulting row and column index to print the value

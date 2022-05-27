@@ -3,12 +3,16 @@
 
 class Enemies : public GameObject {
 public:
+	struct Enemy {
+
+	};
+public:
 	Enemies();
 	~Enemies();
 
 	Enemies(int x, int y, float size);
 
-	void update(Vector2 updatePos);
+	void update();
 	void draw() override;
 
 private:

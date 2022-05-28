@@ -1,9 +1,11 @@
 #pragma once
 #include <iostream>
+#include <vector>
 
 #include "raylib.h"
 #include "raymath.h"
-
+#include "Bullet.h"
+#include "Player.h"
 
 
 class Game {
@@ -11,8 +13,12 @@ public:
 	Game();
 	~Game();
 
-private:
-	int score(int incr);
 
+	std::vector<Bullet*> bullets;
+
+private:
+	float deltaTime;
+
+	int score(int incr);
 	void display();
 };

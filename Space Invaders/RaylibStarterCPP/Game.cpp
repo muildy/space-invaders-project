@@ -1,34 +1,63 @@
 //https://www.raylib.com/examples.html -image processing was a big help
-
 #include "Game.h"
-#include "Player.h"
+
 
 Game::Game()
 {
     int screenWidth = GetScreenWidth();
     int screenHeight = GetScreenHeight();
     
+    //new std::vector<Bullet>(bullets);
     //-------------------------------------------------------------------------------------
 
-    Player player = Player(screenWidth/2,screenHeight*(1/8));
+    Player player = Player(screenWidth/2, screenHeight - (screenHeight/8));
 
     // Main game loop
     while (!WindowShouldClose())    // Detect window close button or ESC key
     {
-
+        deltaTime = GetFrameTime();                
 
         // Update
         //---------------------------------------------------------------------------------
         // TODO: Update your variables here
-        player.update();
+        player.update(deltaTime);
+
+
+        if (IsKeyPressed(KEY_SPACE)) {
+            std::cout << "SPACE" << std::endl;
+            Bullet* y = new Bullet(player.posX, player.posY, false);
+            bullets.push_back(y);
+        }
+
+        if (bullets.size() > 0) {
+            for (int i = 0; i < bullets.size(); i++) {
+                bullets[i]->update(deltaTime);
+
+                if ((bullets[i]->posX >= GetScreenWidth() || bullets[i]->posX <= 0) || (bullets[i]->posY <= 0 || bullets[i]->posY >= GetScreenHeight())) {
+                    
+                    Bullet* temp = bullets[i];
+                    bullets.erase(bullets.begin() + i);
+                    delete(temp);
+                }
+            }
+        }
+
+
+
 
         // Draw
         //---------------------------------------------------------------------------------
         BeginDrawing();
 
         ClearBackground(BLACK);
+        if (bullets.size() > 0) {
+            for (Bullet* b : bullets) {
+                b->draw();
+            }
+        }
         player.draw();
-            
+        
+        
         EndDrawing();
         //---------------------------------------------------------------------------------
     }

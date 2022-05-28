@@ -22,12 +22,10 @@
 #include <iostream>
 
 #include "raylib.h"
-#include "raymath.h"
 
 #include "TitleScreen.h"
-
 #include "Game.h"
-#include "Player.h"
+
 
 
 int main(int argc, char* argv[])
@@ -44,8 +42,8 @@ int main(int argc, char* argv[])
 
 
     //the title screen runs, and when it ends due to buttonpress, it initilises the main game class
-    TitleScreen title = TitleScreen();                                   //remember to uncomment
-    //Game runGame = Game();//this is here due to bug testing reasons
+    //TitleScreen title = TitleScreen();                                   //remember to uncomment
+    Game runGame = Game();//this is here due to bug testing reasons
 
     // De-Initialization 
     //--------------------------------------------------------------------------------------   

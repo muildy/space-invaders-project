@@ -10,6 +10,7 @@ Player::Player() {
 Player::~Player()
 {
 }
+
 Player::Player(int x, int y)
 {
     posX = x;
@@ -17,21 +18,15 @@ Player::Player(int x, int y)
     m_size = 5;
     m_speed = 10;
 }
-int tempX = 0;
-void Player::update()
+
+void Player::update(float deltaTime)
 {
 
     if (IsKeyDown(KEY_A) || IsKeyDown(KEY_LEFT)) {
-        posX -= m_speed;
-        std::cout << "A" << tempX << std::endl;
+        posX -= m_speed + (m_speed * deltaTime);
     }
     if (IsKeyDown(KEY_D) || IsKeyDown(KEY_RIGHT)) {
-        posX += m_speed;
-        std::cout << "D" << tempX << std::endl;
-
-    }
-    if (IsKeyPressed(KEY_SPACE)) {
-        std::cout << "SPACE" << std::endl;
+        posX += m_speed + (m_speed * deltaTime);
     }
 }
 void Player::draw()

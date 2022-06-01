@@ -6,7 +6,7 @@
 #include "raymath.h"
 #include "Bullet.h"
 #include "Player.h"
-
+#include "Enemy.h"
 
 class Game {
 public:
@@ -15,6 +15,8 @@ public:
 
 
 	std::vector<Bullet*> bullets;
+
+	std::vector<Enemy*> enemies;
 
 private:
 	float deltaTime;

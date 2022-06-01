@@ -2,18 +2,6 @@
 
 
 #include <iostream>
-Bullet::Bullet()
-{
-    posX = 0;
-    posY = 0;
-    m_size = 0;
-}
-
-//Bullet::~Bullet()
-//{
-//    delete(this);
-//}
-
 Bullet::Bullet(int x, int y, bool _isenemy)
 {
     this->posX = x;

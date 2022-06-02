@@ -19,6 +19,10 @@
 \                                                                                           |
   ******************************************************************************************/
 //https://www.youtube.com/watch?v=MkpxwsybNPo&t=75s&ab_channel=Hopson ~usefull video
+
+#ifdef DEBUG
+
+
 #include <iostream>
 
 #include "raylib.h"
@@ -51,4 +55,32 @@ int main(int argc, char* argv[])
     //--------------------------------------------------------------------------------------
 
     return 0;
+}
+#endif // DEBUG
+#include <iostream>
+using namespace std;
+int main(int argc, char* argv[])
+{
+    int five = 5;
+    cout << five << endl;    //5
+
+    int& ref = five;
+    cout << ref << endl;    //5
+    cout << &ref << endl;    //0115FBD0
+
+
+
+    int* pnt = &five;
+    cout << pnt << endl;    //0115FBD0
+    cout << *pnt << endl;    //5
+    cout << **&pnt << endl;    //5
+
+    int& ref2 = *pnt;
+    cout << &ref2 << endl;
+
+    int test = *pnt;
+    cout << test << endl;    //5
+
+    int test2 = **&pnt;
+    cout << test2 << endl;    //5
 }

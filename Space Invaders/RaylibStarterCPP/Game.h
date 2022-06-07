@@ -6,17 +6,17 @@
 #include "raymath.h"
 #include "Bullet.h"
 #include "Player.h"
-#include "Enemy.h"
+#include "EnemyManager.h"
 
 class Game {
 public:
 	Game();
 	~Game();
 
+	//MOVED TO BULLET.H
+//	std::vector<Bullet*> bullets;
 
-	std::vector<Bullet*> bullets;
-
-	std::vector<Enemy*> enemies;
+	//std::vector<Enemy*> enemies;
 
 private:
 	float deltaTime;

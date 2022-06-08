@@ -2,8 +2,8 @@
 #include <vector>
 #include "Enemy.h"
  
-#define width 11  //amount of enemies acros
-#define height 5  //amount of enemies deep
+#define _width 11  //amount of enemies acros
+#define _height 5  //amount of enemies deep
 
 class EnemyManager
 {

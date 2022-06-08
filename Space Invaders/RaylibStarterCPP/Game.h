@@ -13,11 +13,6 @@ public:
 	Game();
 	~Game();
 
-	//MOVED TO BULLET.H
-//	std::vector<Bullet*> bullets;
-
-	//std::vector<Enemy*> enemies;
-
 private:
 	float deltaTime;
 

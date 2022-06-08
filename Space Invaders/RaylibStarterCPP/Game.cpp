@@ -27,9 +27,8 @@ Game::Game()
 
         if (IsKeyPressed(KEY_SPACE)) {
             std::cout << "SPACE" << std::endl;
-            bullets.addBullet(player.posX, player.posY, false);
+            bullets.addBullet(player.posX, player.posY - 5, false);
         }
-
 
         bullets.update(deltaTime);
         enMngr.update(deltaTime);
@@ -37,12 +36,10 @@ Game::Game()
         // Draw
         //---------------------------------------------------------------------------------
         BeginDrawing();
-
         ClearBackground(BLACK);
-        bullets.draw();
 
+        bullets.draw();
         player.draw();
-        
         enMngr.draw();
 
         EndDrawing();

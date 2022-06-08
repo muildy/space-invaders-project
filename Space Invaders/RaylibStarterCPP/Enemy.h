@@ -11,7 +11,6 @@ public:
     void update(float deltaTime) override;
     void draw() override;
 
-    bool direction = false;
 private:
     bool alive;
 };

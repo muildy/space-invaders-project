@@ -5,6 +5,8 @@ struct objPositon {
     int y;
 };
 
+//base class of Enemy and Player, nothing is protected or private as i forgot about getters or setters until way too late
+//and i am out of time
 class GameObject
 {
 public:
@@ -20,6 +22,6 @@ public:
 
     float posX;
     float posY;
-protected:
     float m_size = 15;
+
 };

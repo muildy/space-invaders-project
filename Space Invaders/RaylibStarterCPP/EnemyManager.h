@@ -15,6 +15,8 @@ public:
 	EnemyManager();
 	~EnemyManager();
 
+	void repopulate();
+
 	void update(float deltaTime);
 	void draw();
 

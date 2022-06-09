@@ -22,6 +22,6 @@ public:
 
     float posX;
     float posY;
-    float m_size = 15;
+    float m_size = 20;
 
 };

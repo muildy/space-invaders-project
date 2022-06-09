@@ -16,6 +16,7 @@ public:
 private:
 	float deltaTime;
 
-	int score(int incr);
+	int Score();
 	void display();
+	int score;
 };

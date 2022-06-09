@@ -31,5 +31,5 @@ void Player::update(float deltaTime)
 }
 void Player::draw()
 {
-    DrawCircle(posX, posY, m_size, BEIGE);
+    DrawCircle(posX, posY, m_size, RED);
 }

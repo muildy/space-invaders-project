@@ -27,7 +27,7 @@
 #include "TitleScreen.h"
 #include "Game.h"
 
-
+typedef enum GameState { TITLE = 0, GAME, ENDING } GameState;
 
 int main(int argc, char* argv[])
 {
@@ -36,15 +36,25 @@ int main(int argc, char* argv[])
     int screenWidth = 800;
     int screenHeight = 450;
     
+    //
+
+
+
     InitWindow(screenWidth, screenHeight = 450, "Space Invaders");
     SetTargetFPS(30);
-    
-    
-    
-    
-    //the title screen runs, and when it ends due to buttonpress, it initilises the main game class
-    //TitleScreen title = TitleScreen();                                   //remember to uncomment
-    Game runGame = Game();//this is here due to bug testing reasons
+    TitleScreen titlescreen = TitleScreen();
+    //Game runGame = Game();
+    //while (true) {
+    //    switch (currentState) {
+    //    case TITLE:
+    //        TitleScreen titlescreen;titlescreen = TitleScreen();
+    //        break;
+    //    case GAME:
+    //        break;
+    //    default:
+    //        break;
+    //    }
+    //}
     
     // De-Initialization 
     //--------------------------------------------------------------------------------------   

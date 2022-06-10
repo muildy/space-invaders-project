@@ -11,6 +11,4 @@ class TitleScreen {
 public:
 	TitleScreen();
 	~TitleScreen();
-
-private:
 };

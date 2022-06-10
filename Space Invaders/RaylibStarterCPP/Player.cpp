@@ -17,6 +17,7 @@ Player::Player(int x, int y)
     posY = y;
     m_size = 5;
     m_speed = 10;
+    alive = true;
 }
 
 void Player::update(float deltaTime)
@@ -32,4 +33,9 @@ void Player::update(float deltaTime)
 void Player::draw()
 {
     DrawCircle(posX, posY, m_size, RED);
+}
+
+bool Player::isalive()
+{
+    return alive;
 }

@@ -1,12 +1,7 @@
 //https://www.raylib.com/examples.html -image processing was a big help
 #include "Game.h"
-/// <summary>
-/// Issues:
-/// i dont think enemies are being properly removed since the mem usage only increases
-/// player is still a tiny circle at the bottom of screen
-/// need restrictions on how fast player can shoot
-/// also needs restrictions for player movement
-/// </summary>
+
+
 Game::Game()
 {
     score = 0;
@@ -43,11 +38,14 @@ Game::Game()
         enMngr.update(deltaTime);
         
         //bullet - player collision test
-        if (bullets.bulletCheck(player.posX, player.posY, player.m_size)) {
-            std::cout << "playerhit" << std::endl; break;
+        if (bullets.bulletCheck(player.posX, player.posY, player.m_size) || enMngr.gameOver) {
+            enMngr.depopulate();
+            return;
+            //DeathScreen ded = DeathScreen(score); //AAAAAAAAAAAAAAAAAAAAAAAAAAA dont know how to do menus
+            //continue;
         }
 
-        
+        //collision detection for enemies, goes through each enemy and checks if each bullet is within
         for (int i = 0; i < enMngr.enemies.size(); i++) {
             if (bullets.bulletCheck(enMngr.enemies[i]->posX, enMngr.enemies[i]->posY, enMngr.enemies[i]->m_size)) {
                 std::cout << "enemyhit" << std::endl;
@@ -75,7 +73,7 @@ Game::Game()
 Game::~Game()
 {
 }
-
+//increments then returns score
 int Game::Score()
 {
     score++;
@@ -85,5 +83,4 @@ int Game::Score()
 void Game::display()
 {
     DrawText(TextFormat("Score: %04i", score), 10, 10, 20, DARKGRAY);
-
 }

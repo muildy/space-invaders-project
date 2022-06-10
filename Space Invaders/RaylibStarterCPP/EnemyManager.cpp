@@ -1,6 +1,6 @@
 #include "EnemyManager.h"
 #include <iostream>
-
+//for the amount of enemies along the y, place enemies along the x
 EnemyManager::EnemyManager()
 {
 	for (int y = 0; y < _height; y++) {
@@ -12,9 +12,9 @@ EnemyManager::EnemyManager()
 
 EnemyManager::~EnemyManager()
 {
-
 }
 
+//a carbon copy of the initialiser since you cant initialise a program twice
 void EnemyManager::repopulate()
 {
 	for (int y = 0; y < _height; y++) {
@@ -24,8 +24,29 @@ void EnemyManager::repopulate()
 	}
 }
 
+//given the enemies list isnt empty, iterate through all elements and delete them
+void EnemyManager::depopulate()
+{
+	if (enemies.size() != 0) {
+		for (int i = 0; i < enemies.size(); i++) {
+			Enemy* temp = enemies[i];
+			enemies.erase(enemies.begin() + i);
+			delete(temp);
+		}
+	}
+}
+
+//assigns temp a pointer to enemies, erase the original pointer to enemies and then remove the data
+void EnemyManager::removeEnemy(int index)
+{
+	Enemy* temp = enemies[index];
+	enemies.erase(enemies.begin() + index);
+	delete(temp);
+}
+
 void EnemyManager::update(float deltaTime)
 {
+	gameOver = false;
 	//debug tool
 	if (IsKeyPressed(KEY_V)) {
 		auto mouse = GetMousePosition();
@@ -47,8 +68,7 @@ void EnemyManager::update(float deltaTime)
 			x_max = enemies[i]->posX + enemies[i]->m_size;//the size of the enemy is added so they dont clip into the screen edge
 	}
 	if (y_max >= GetScreenHeight()-60) {
-		return;
-		std::cout << "Game Over" << std::endl;
+		gameOver = true;
 	}
 
 	//if the largest x is larger than or equal to the edge of the screen, 
@@ -67,18 +87,10 @@ void EnemyManager::update(float deltaTime)
 	
 }
 
+//iterates through enemies and calls Enemy draw for each
 void EnemyManager::draw()
 {
 	for (Enemy* en : enemies) {
 		en->draw();
 	}
 }
-
-void EnemyManager::removeEnemy(int index)
-{
-	Enemy* temp = enemies[index];
-	enemies.erase(enemies.begin() + index);
-	delete(temp);
-}
-
-

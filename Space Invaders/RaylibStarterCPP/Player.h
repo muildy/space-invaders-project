@@ -16,6 +16,7 @@ public:
     void update(float deltaTime) override;
     void draw() override;
 
+    bool isalive();
 private:
     int m_speed;
     bool alive;

@@ -26,10 +26,11 @@
 
 #include "TitleScreen.h"
 #include "Game.h"
+#include "DeathScreen.h"
 
 typedef enum GameState { TITLE = 0, GAME, ENDING } GameState;
 
-int main(int argc, char* argv[])
+void main(int argc, char* argv[])
 {
     // Initialization
     //--------------------------------------------------------------------------------------
@@ -42,7 +43,8 @@ int main(int argc, char* argv[])
 
     InitWindow(screenWidth, screenHeight = 450, "Space Invaders");
     SetTargetFPS(30);
-    TitleScreen titlescreen = TitleScreen();
+    DeathScreen ded = DeathScreen(5);
+    //TitleScreen titlescreen = TitleScreen();
     //Game runGame = Game();
     //while (true) {
     //    switch (currentState) {
@@ -60,6 +62,4 @@ int main(int argc, char* argv[])
     //--------------------------------------------------------------------------------------   
     CloseWindow();        // Close window and OpenGL context
     //--------------------------------------------------------------------------------------
-
-    return 0;
 }

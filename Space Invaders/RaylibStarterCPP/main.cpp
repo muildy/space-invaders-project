@@ -43,20 +43,10 @@ void main(int argc, char* argv[])
 
     InitWindow(screenWidth, screenHeight = 450, "Space Invaders");
     SetTargetFPS(30);
-    DeathScreen ded = DeathScreen(5);
-    //TitleScreen titlescreen = TitleScreen();
+    //DeathScreen ded = DeathScreen(5);
+    TitleScreen titlescreen = TitleScreen();
     //Game runGame = Game();
-    //while (true) {
-    //    switch (currentState) {
-    //    case TITLE:
-    //        TitleScreen titlescreen;titlescreen = TitleScreen();
-    //        break;
-    //    case GAME:
-    //        break;
-    //    default:
-    //        break;
-    //    }
-    //}
+
     
     // De-Initialization 
     //--------------------------------------------------------------------------------------   

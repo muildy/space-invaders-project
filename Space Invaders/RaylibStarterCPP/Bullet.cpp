@@ -57,7 +57,6 @@ void Bullet::update(float deltaTime) {
             }
 
             if ((bullets[i]->posX >= GetScreenWidth() || bullets[i]->posX <= 0) || (bullets[i]->posY <= 0 || bullets[i]->posY >= GetScreenHeight())) {
-                std::cout << "deleted" << std::endl;
                 deleteBullet(i);
             }
         }

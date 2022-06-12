@@ -1,4 +1,4 @@
-//https://www.raylib.com/examples.html -image processing was a big help
+//https://www.raylib.com/examples.html -image processing was a big help for the menu buttons
 #include "Game.h"
 
 
@@ -28,8 +28,9 @@ Game::Game()
 
         if (IsKeyPressed(KEY_SPACE)) {
             std::cout << "SPACE" << std::endl;
-            bullets.addBullet(player.posX, player.posY - 50, false);
+            bullets.addBullet(player.posX, player.posY - 15, false);
         }
+        //cheat bullet for testing
         if (IsKeyPressed(KEY_E)) {
             bullets.addBullet(GetMouseX(), GetMouseY(), true);
         }
@@ -37,17 +38,18 @@ Game::Game()
         bullets.update(deltaTime);
         enMngr.update(deltaTime);
         
+        //enemy shoot part
+
+
         //bullet - player collision test
         if (bullets.bulletCheck(player.posX, player.posY, player.m_size) || enMngr.gameOver) {
             enMngr.depopulate();
-            return;
-            //DeathScreen ded = DeathScreen(score); //AAAAAAAAAAAAAAAAAAAAAAAAAAA dont know how to do menus
-            //continue;
+            DeathScreen ded = DeathScreen(score);
+            continue;
         }
-
         //collision detection for enemies, goes through each enemy and checks if each bullet is within
         for (int i = 0; i < enMngr.enemies.size(); i++) {
-            if (bullets.bulletCheck(enMngr.enemies[i]->posX, enMngr.enemies[i]->posY, enMngr.enemies[i]->m_size)) {
+            if (bullets.bulletCheck(enMngr.enemies[i]->posX, enMngr.enemies[i]->posY, enMngr.enemies[i]->m_size)) {                
                 std::cout << "enemyhit" << std::endl;
                 enMngr.removeEnemy(i);
                 Score();

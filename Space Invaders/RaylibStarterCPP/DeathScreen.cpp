@@ -11,9 +11,8 @@ DeathScreen::DeathScreen(int score)
     int offset = 5;
     //button items
     bool mCheckStart = false;
-    bool mCheckExit = false;
+
     Rectangle startbutton = Rectangle{ 40.0f, 240.0f, 150.0f, 30.0f };//{x,y,width,height}
-    Rectangle exitbutton = Rectangle{ 40.0f, 280.0f, 150.0f, 30.0f };
 
     //main game loop, but for title screen
     while (!WindowShouldClose())    // Detect window close button or ESC key
@@ -32,15 +31,7 @@ DeathScreen::DeathScreen(int score)
         }
         else
             mCheckStart = false;
-        //the check for exit button
-        if (CheckCollisionPointRec(GetMousePosition(), exitbutton)) {
-            mCheckExit = true;
-            if (IsMouseButtonReleased(MOUSE_LEFT_BUTTON)) {
-                return;
-            }
-        }
-        else
-            mCheckExit = false;
+
         // Draw
         //----------------------------------------------------------------------------------
         BeginDrawing();
@@ -49,10 +40,7 @@ DeathScreen::DeathScreen(int score)
         DrawText(TextFormat("Final Score: %04i", score), 40 , 130, 70, WHITE);//{char*, X, Y, fontsize, colour
         //menu buttons 
         DrawRectangleRec(startbutton, (mCheckStart) ? LIGHTGRAY : DARKGRAY);
-        DrawRectangleRec(exitbutton, (mCheckExit) ? LIGHTGRAY : DARKGRAY);
         DrawText("Try again?", startbutton.x + offset, startbutton.y + offset, 20, WHITE);
-        DrawText("EXIT", exitbutton.x + offset, exitbutton.y + offset, 20, WHITE);
-
 
         EndDrawing();
         //---------------------------------------------------------------------------------- 

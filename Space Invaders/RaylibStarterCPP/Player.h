@@ -5,6 +5,7 @@
 #include "raylib.h"
 #include "Bullet.h"
 
+//player class, holds it x and y and what shape is used to draw it
 class Player :public GameObject
 {
 public:
@@ -16,10 +17,8 @@ public:
     void update(float deltaTime) override;
     void draw() override;
 
-    bool isalive();
 private:
     int m_speed;
-    bool alive;
 };
 
 

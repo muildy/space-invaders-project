@@ -21,6 +21,7 @@ Player::Player(int x, int y)
     isPlayer = true;
 }
 
+//basic movement that allows for both wasd and arrowkey movement
 void Player::update(float deltaTime)
 {
 
@@ -34,9 +35,4 @@ void Player::update(float deltaTime)
 void Player::draw()
 {
     DrawCircle(posX, posY, m_size, RED);
-}
-
-bool Player::isalive()
-{
-    return alive;
 }

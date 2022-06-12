@@ -1,8 +1,7 @@
 #pragma once
 #include "GameObject.h"
 
-class Enemy :
-    public GameObject
+class Enemy :public GameObject
 {
 public:
     Enemy();
@@ -10,8 +9,5 @@ public:
 
     void update(float deltaTime) override;
     void draw() override;
-
-private:
-    bool alive;
 };
 

@@ -9,12 +9,11 @@ DeathScreen::DeathScreen(int score)
     int screenWidth = GetScreenWidth();
     int screenHeight = GetScreenHeight();
     int offset = 5;
-    //button items
+    //button item
     bool mCheckStart = false;
 
     Rectangle startbutton = Rectangle{ 40.0f, 240.0f, 150.0f, 30.0f };//{x,y,width,height}
 
-    //main game loop, but for title screen
     while (!WindowShouldClose())    // Detect window close button or ESC key
     {
         // Update

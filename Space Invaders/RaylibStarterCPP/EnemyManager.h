@@ -34,6 +34,6 @@ public:
 	void draw();
 		
 	int direction = 1;	//multiplied to the movement 
-	bool gameOver = false;//attempt at a menu system
+	bool gameOver = false;//used so game knows when the player loses
 };
 

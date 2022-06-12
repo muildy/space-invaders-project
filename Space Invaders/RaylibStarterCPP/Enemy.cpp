@@ -2,14 +2,12 @@
 
 Enemy::Enemy()
 {
-	alive = true;
 	posX = 10;
 	posY = 10;
 }
 
 Enemy::Enemy(int x, int y)
 {
-	alive = true;
 	isPlayer = false;
 	posX = x;
 	posY = y;

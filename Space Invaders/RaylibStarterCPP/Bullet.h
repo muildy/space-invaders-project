@@ -7,7 +7,9 @@
 class Bullet :public GameObject
 {
 public:
-	bool isEnemy;
+	bool isEnemy;			//used for directioning, if its false, it shoots up, if its true, the opposite
+	int bulletSpeed = 100;
+
 	std::vector<Bullet*> bullets;
 
 	Bullet();
@@ -25,19 +27,28 @@ public:
 	/// </summary>
 	/// <param name="_x, _y, isEnemy"></param>
 	void addBullet(int _x, int _y, bool isEnemy);
+	
+	/// <summary>
+	/// empties the bullet array
+	/// </summary>
+	void clearBullet();
 
 	/// <summary>
-	/// checks the 
+	/// compares the given circle components with all the bullet circles
+	/// given some conditions and returns either true or false
 	/// </summary>
-	/// <param name="_x, _y, _size"></param>
-	/// <returns>returns true if something enters the bullet radius</returns>
-	bool bulletCheck(int _x, int _y, int _size);
+	/// <param name="elements of a circle and if its a player"></param>
+	/// <returns>true if given circle matches with any bullet given
+	/// both player and enemy are true, false if not</returns>
+	bool bulletCheck(int _x, int _y, int _size, bool isPlayer);
 
+	/// <summary>
+	/// deletes the bullet at the given array index
+	/// </summary>
+	/// <param name="position in the array"></param>
 	void deleteBullet(int index);
 
 	void update(float deltaTime);
 	void draw();
-private:
-	int bulletSpeed = 100;
 };
 

@@ -23,5 +23,5 @@ public:
     float posX;
     float posY;
     float m_size = 5;
-
+    bool isPlayer;
 };

@@ -10,6 +10,7 @@ Enemy::Enemy()
 Enemy::Enemy(int x, int y)
 {
 	alive = true;
+	isPlayer = false;
 	posX = x;
 	posY = y;
 	m_size = 20;

@@ -6,6 +6,7 @@ Player::Player() {
     posY = 0;
     m_size = INT_MAX;
     m_speed = 2;
+    isPlayer = true;
 }
 Player::~Player()
 {
@@ -17,7 +18,7 @@ Player::Player(int x, int y)
     posY = y;
     m_size = 5;
     m_speed = 10;
-    alive = true;
+    isPlayer = true;
 }
 
 void Player::update(float deltaTime)

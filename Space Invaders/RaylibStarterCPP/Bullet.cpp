@@ -11,29 +11,46 @@ Bullet::Bullet(int x, int y, bool _isenemy)
     posY = y;
     m_size = 5;
     isEnemy = _isenemy;
+    
 }
 
+//creates new bullet and adds it to end of vector
 void Bullet::addBullet(int _x, int _y, bool isEnemy)
-{
+ {
     Bullet* newBullet = new Bullet(_x, _y, isEnemy);
     bullets.push_back(newBullet);
 }
 
-bool Bullet::bulletCheck(int _x, int _y, int _size)
+//if there are bullets, it iterates through the list and creates a pointer, deleting it and then deleting the data
+void Bullet::clearBullet()
 {
-    bool collisionCheck = false;
-    if (bullets.size() > 0) {
-        for (int i = 0; unsigned(i) < bullets.size(); i++) {
-            Vector2 bulletVect = Vector2{ (float)bullets[i]->posX, (float)bullets[i]->posY};
-            Vector2 otherVect = Vector2{ (float)_x, (float)_y };
-            collisionCheck = CheckCollisionCircles(bulletVect, bullets[i]->m_size, otherVect, _size);
-            if (collisionCheck) {
-                deleteBullet(i);
-                return collisionCheck;
-            }
+    if (bullets.size() != 0) {
+        for (int i = 0; i < bullets.size(); i++) {
+            Bullet* temp = bullets[i];
+            bullets.erase(bullets.begin() + i);
+            delete(temp);
         }
     }
-    return collisionCheck;
+}
+
+//given that there are bullets, the program loops through all the bullets, creating vectors for raylibs inbuilt 
+//circle collision detection, if conditions are met it returns true, if not, then eventually false
+bool Bullet::bulletCheck(int _x, int _y, int _size, bool isPlayer)
+{
+    //bool collisionCheck = false;
+    if (bullets.size() > 0) {
+        for (int i = 0; i < bullets.size(); i++) {
+            Vector2 bulletVect = Vector2{ (float)bullets[i]->posX, (float)bullets[i]->posY};
+            Vector2 otherVect = Vector2{ (float)_x, (float)_y };
+    
+            if ((bullets[i]->isEnemy == isPlayer) && CheckCollisionCircles(bulletVect, bullets[i]->m_size, otherVect, _size)) {
+                deleteBullet(i);
+                return true;
+            }
+            else continue;
+        }
+    }
+    return false;
 }
 
 void Bullet::deleteBullet(int index)
@@ -67,7 +84,7 @@ void Bullet::update(float deltaTime) {
 void Bullet::draw() {
     if (bullets.size() > 0) {
         for (Bullet* b : bullets) {
-            DrawEllipseLines(b->posX, b->posY, b->m_size, b->m_size + 2, BLUE);
+            DrawEllipseLines(b->posX, b->posY, b->m_size, b->m_size + 2, b->isEnemy?BLUE:RED);
         }
     }
-  }
+}

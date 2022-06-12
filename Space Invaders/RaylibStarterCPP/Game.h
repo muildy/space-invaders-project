@@ -24,7 +24,10 @@ public:
 
 private:
 	float deltaTime;
-	int score;
-	int Score();
-	void display();
+	int fireRateEnemy;	//the amount of time between bullets being fired by the enemies 
+	int fireRatePlayer;	//the amount of time between bullets being fired by the enemies 
+	int randIndex;	//a randomly generated number to choose what enemy fires the bullet
+	int score;		//increments each time an enemy dies
+	int Score();	//does the incrementing of the score
+	void display(); //writes to screen how many enemies have died
 };
